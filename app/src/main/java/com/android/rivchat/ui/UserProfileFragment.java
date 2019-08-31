@@ -419,7 +419,6 @@ public class UserProfileFragment extends Fragment {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-            // each data item is just a string in this case
             public TextView label, value;
             public ImageView icon;
             public ViewHolder(View view) {

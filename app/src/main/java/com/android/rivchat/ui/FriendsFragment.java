@@ -203,20 +203,14 @@ public class FriendsFragment extends Fragment implements SwipeRefreshLayout.OnRe
                     .setConfirmButton(android.R.string.ok, new LovelyTextInputDialog.OnTextInputConfirmListener() {
                         @Override
                         public void onTextInputConfirmed(String text) {
-                            //Tim id user id
                             findIDEmail(text);
-                            //Check xem da ton tai ban ghi friend chua
-                            //Ghi them 1 ban ghi
+
                         }
                     })
                     .show();
         }
 
-        /**
-         * TIm id cua email tren server
-         *
-         * @param email
-         */
+
         private void findIDEmail(String email) {
             dialogWait.setCancelable(false)
                     .setIcon(R.drawable.ic_add_friend)
@@ -264,9 +258,7 @@ public class FriendsFragment extends Fragment implements SwipeRefreshLayout.OnRe
             });
         }
 
-        /**
-         * Lay danh sach friend cua một UID
-         */
+
         private void checkBeforAddFriend(final String idFriend, Friend userInfo) {
             dialogWait.setCancelable(false)
                     .setIcon(R.drawable.ic_add_friend)
@@ -274,7 +266,6 @@ public class FriendsFragment extends Fragment implements SwipeRefreshLayout.OnRe
                     .setTopColorRes(R.color.colorPrimary)
                     .show();
 
-            //Check xem da ton tai id trong danh sach id chua
             if (listFriendID.contains(idFriend)) {
                 dialogWait.dismiss();
                 new LovelyInfoDialog(context)
@@ -292,11 +283,7 @@ public class FriendsFragment extends Fragment implements SwipeRefreshLayout.OnRe
             }
         }
 
-        /**
-         * Add friend
-         *
-         * @param idFriend
-         */
+
         private void addFriend(final String idFriend, boolean isIdFriend) {
             if (idFriend != null) {
                 if (isIdFriend) {
@@ -357,9 +344,7 @@ public class FriendsFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     }
 
-    /**
-     * Lay danh sach ban be tren server
-     */
+
     private void getListFriendUId() {
         FirebaseDatabase.getInstance().getReference().child("friend/" + StaticConfig.UID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -383,9 +368,6 @@ public class FriendsFragment extends Fragment implements SwipeRefreshLayout.OnRe
         });
     }
 
-    /**
-     * Truy cap bang user lay thong tin id nguoi dung
-     */
     private void getAllFriendInfo(final int index) {
         if (index == listFriendID.size()) {
             //save list friend
@@ -484,7 +466,6 @@ class ListFriendsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     }
                 });
 
-        //nhấn giữ để xóa bạn
         ((View) ((ItemFriendViewHolder) holder).txtName.getParent().getParent().getParent())
                 .setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
@@ -649,11 +630,6 @@ class ListFriendsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return listFriend.getListFriend() != null ? listFriend.getListFriend().size() : 0;
     }
 
-    /**
-     * Delete friend
-     *
-     * @param idFriend
-     */
     private void deleteFriend(final String idFriend) {
         if (idFriend != null) {
             FirebaseDatabase.getInstance().getReference().child("friend").child(StaticConfig.UID)

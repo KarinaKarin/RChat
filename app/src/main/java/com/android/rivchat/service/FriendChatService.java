@@ -196,7 +196,7 @@ public class FriendChatService extends Service {
         NotificationManager notificationManager =
                 (NotificationManager) this.getSystemService(
                         Context.NOTIFICATION_SERVICE);
-        notificationManager.cancel(id);
+        //notificationManager.cancel(id);
         notificationManager.notify(id,
                 notificationBuilder.build());
     }

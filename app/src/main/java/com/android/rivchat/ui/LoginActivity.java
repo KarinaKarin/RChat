@@ -169,9 +169,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
                             waitingDialog.dismiss();
-                            // If sign in fails, display a message to the user. If sign in succeeds
-                            // the auth state listener will be notified and logic to handle the
-                            // signed in user can be handled in the listener.
+
                             if (!task.isSuccessful()) {
                                 new LovelyInfoDialog(LoginActivity.this) {
                                     @Override
@@ -210,12 +208,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-        /**
-         * Action Login
-         *
-         * @param email
-         * @param password
-         */
+
         void signIn(String email, String password) {
             waitingDialog.setIcon(R.drawable.ic_person_low)
                     .setTitle("Login....")
@@ -226,9 +219,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
-                            // If sign in fails, display a message to the user. If sign in succeeds
-                            // the auth state listener will be notified and logic to handle the
-                            // signed in user can be handled in the listener.
+
                             waitingDialog.dismiss();
                             if (!task.isSuccessful()) {
                                 Log.w(TAG, "signInWithEmail:failed", task.getException());
@@ -266,11 +257,7 @@ public class LoginActivity extends AppCompatActivity {
                     });
         }
 
-        /**
-         * Action reset password
-         *
-         * @param email
-         */
+
         void resetPassword(final String email) {
             mAuth.sendPasswordResetEmail(email)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -321,9 +308,7 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
 
-        /**
-         * Luu thong tin user info cho nguoi dung dang nhap
-         */
+
         void saveUserInfo() {
             FirebaseDatabase.getInstance().getReference().child("user/" + StaticConfig.UID).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -344,9 +329,7 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
 
-        /**
-         * Khoi tao thong tin mac dinh cho tai khoan moi
-         */
+
         void initNewUserInfo() {
             User newUser = new User();
             newUser.email = user.getEmail();

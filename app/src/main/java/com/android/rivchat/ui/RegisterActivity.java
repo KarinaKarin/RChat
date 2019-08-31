@@ -145,12 +145,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Validate email, pass == re_pass
-     * @param emailStr
-     * @param password
-     * @return
-     */
+
     private boolean validate(String emailStr, String password, String repeatPassword) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
         return password.length() > 0 && repeatPassword.equals(password) && matcher.find();
